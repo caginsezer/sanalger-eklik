@@ -1,0 +1,10 @@
+# ninja log v5
+1	2999	1775575280511020538	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	88cdfbdd9680da48
+2	3446	1775575280950123711	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	98414e488d3213de
+5	3532	1775575281048958732	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	b008f0a2d1629075
+4	3585	1775575281103915826	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	fdcf031d94405ab
+1	3678	1775575281185367493	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	c87794fd4f531c5d
+11	3864	1775575281380671292	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	eb467d35c6e65369
+3	4114	1775575281631198976	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	939c1c064c32285a
+0	4266	1775575281783149847	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	311829bedbd174a2
+4266	4451	1775575281968034683	/Users/apple/Desktop/MagnetGame/Project/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4o5u3v6a/obj/arm64-v8a/libgame.so	4b6a390f979f66e4
