@@ -27,8 +27,12 @@ public class SceneBootstrap : MonoBehaviour
             new GameObject("AudioManager").AddComponent<AudioManager>();
         }
 
-        // IntroController artık opsiyonel, hata riskine karşı devredışı bırakıldı
-        
+        // IntroController eklendi (Watchdog destekli)
+        if (Object.FindAnyObjectByType<IntroController>() == null)
+        {
+            new GameObject("IntroController").AddComponent<IntroController>();
+        }
+
         GameObject gmObj = new GameObject("GameManager");
         gmObj.AddComponent<GameManager>();
 

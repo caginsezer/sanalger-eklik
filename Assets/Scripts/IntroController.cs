@@ -25,12 +25,31 @@ public class IntroController : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    private System.Action cachedOnComplete;
+    private bool introFinished = false;
+
     public void PlayIntro(int startingPlayer, System.Action onComplete)
     {
-        StartCoroutine(IntroSequence(startingPlayer, onComplete));
+        cachedOnComplete = onComplete;
+        introFinished = false;
+        
+        // WATCHDOG (Güvenlik Köpeği): Animasyon takılırsa maksimum 8 saniye sonra oyunu zorla başlat
+        Invoke(nameof(ForceComplete), 8.0f);
+        
+        StartCoroutine(IntroSequence(startingPlayer));
     }
 
-    private IEnumerator IntroSequence(int startingPlayer, System.Action onComplete)
+    private void ForceComplete()
+    {
+        if (introFinished) return;
+        Debug.LogWarning("[Watchdog] Intro timeout tetiklendi. Siyah ekranı geçmek için oyun zorla başlatılıyor!");
+        introFinished = true;
+        ClearFragments();
+        if (introCanvasObj != null) introCanvasObj.SetActive(false);
+        cachedOnComplete?.Invoke();
+    }
+
+    private IEnumerator IntroSequence(int startingPlayer)
     {
         BuildIntroCanvas();
         
@@ -99,9 +118,15 @@ public class IntroController : MonoBehaviour
             yield return null;
         }
 
-        ClearFragments();
-        introCanvasObj.SetActive(false);
-        onComplete?.Invoke();
+        // Eğer Watchdog zaten bitirmişse, tekrar çalıştırma
+        if (!introFinished)
+        {
+            introFinished = true;
+            CancelInvoke(nameof(ForceComplete)); // Watchdog'u iptal et
+            ClearFragments();
+            introCanvasObj.SetActive(false);
+            cachedOnComplete?.Invoke();
+        }
     }
 
     private void BuildIntroCanvas()

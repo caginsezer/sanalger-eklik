@@ -269,11 +269,17 @@ public class MainMenuManager : MonoBehaviour
         AudioManager.Instance?.StopAmbiance();
         menuCanvasObj.SetActive(false);
 
-        // Android'de çökme riski taşıyan 3D Intro animasyonu devredışı bırakıldı (User Request)
-        // Direkt oyuna geçiş yapılıyor
-        if (GameManager.Instance != null)
+        // KESİN ÇÖZÜM: Watchdog destekli, Shader'ları garantili Intro animasyonunu Başlat
+        if (IntroController.Instance != null && GameManager.Instance != null)
         {
-            GameManager.Instance.StartGameFromMenu();
+            IntroController.Instance.PlayIntro(GameManager.Instance.currentPlayer, () => {
+                GameManager.Instance.StartGameFromMenu();
+            });
+        }
+        else
+        {
+            // Eğer hiyerarşide Intro nesnesi bulunamazsa oyunu başlat 
+            GameManager.Instance?.StartGameFromMenu();
         }
     }
 
