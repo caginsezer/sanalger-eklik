@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 using System.Collections;
@@ -31,7 +32,7 @@ public class BuildScript
         // 2. Android Spesifik Ayarlar (Xiaomi 13 ve Modern Cihazlar İçin)
         PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64 | AndroidArchitecture.ARMv7;
         PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel31; // Android 12+ (Xiaomi 13 uyumu)
-        PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel24;    // Android 7.0+
+        PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel25;    // Android 7.1+ (Unity 6 Zorunluluğu)
         PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
         
         // 3. Ekran Yönü Sabitleme (Dikey)
